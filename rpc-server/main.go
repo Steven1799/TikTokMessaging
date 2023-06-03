@@ -1,9 +1,9 @@
 var (
-    rdb = &RedisClient{} // make the RedisClient with global visibility in the 'main' scope
+    rdb = &RedisClient{} // this variable will make the RedisClient global visibile in the 'main' scope
 )
 
 func main() {
-    ctx := context.Background() // https://www.digitalocean.com/community/tutorials/how-to-use-contexts-in-go
+    ctx := context.Background() // contexts in go
 
     err := rdb.InitClient(ctx, "redis:6379", "")
     if err != nil {
