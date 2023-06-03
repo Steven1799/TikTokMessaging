@@ -9,7 +9,7 @@ import (
 	"github.com/TikTokTechImmersion/assignment_demo_2023/rpc-server/kitex_gen/rpc"
 )
 
-// IMServiceImpl implements the last service interface defined in the IDL.
+// IMServiceImpl implements the last service interface that was defined in the IDL.
 type IMServiceImpl struct{}
 
 func (s *IMServiceImpl) Send(ctx context.Context, req *rpc.SendRequest) (*rpc.SendResponse, error) {
@@ -47,10 +47,10 @@ func (s *IMServiceImpl) Pull(ctx context.Context, req *rpc.PullRequest) (*rpc.Pu
 
 	limit := int64(req.GetLimit())
 	if limit == 0 {
-		limit = 10 // default limit 10
+		limit = 10 // default limit is 10
 	}
 	start := req.GetCursor()
-	end := start + limit // did not minus 1 on purpose for hasMore check later on
+	end := start + limit
 
 	messages, err := rdb.GetMessagesByRoomID(ctx, roomID, start, end, req.GetReverse())
 	if err != nil {
